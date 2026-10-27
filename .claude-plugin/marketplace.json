@@ -1,0 +1,15 @@
+{
+  "name": "usercase",
+  "description": "Usercase — virtual users for your website",
+  "owner": {
+    "name": "Usercase",
+    "url": "https://usercase.io"
+  },
+  "plugins": [
+    {
+      "name": "usercase",
+      "source": "./",
+      "description": "Virtual users that browse your website in a real browser and tell you what they thought"
+    }
+  ]
+}

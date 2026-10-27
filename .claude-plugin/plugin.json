@@ -1,0 +1,37 @@
+{
+  "name": "usercase",
+  "displayName": "Usercase",
+  "version": "0.2.5",
+  "description": "Virtual users that browse your website in a real browser and tell you what they thought",
+  "author": {
+    "name": "Usercase",
+    "url": "https://usercase.io"
+  },
+  "homepage": "https://usercase.io",
+  "license": "MIT",
+  "keywords": [
+    "user-research",
+    "ux",
+    "qa",
+    "browser"
+  ],
+  "icon": "./assets/icon.png",
+  "privacyPolicyUrl": "https://usercase.io/privacy",
+  "termsOfServiceUrl": "https://usercase.io/terms",
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "Usercase API key",
+      "description": "Dashboard → Settings → Integrations → API keys. Starts with eb_sk_",
+      "required": true,
+      "sensitive": true
+    },
+    "diagnostics": {
+      "type": "boolean",
+      "title": "Send diagnostics",
+      "description": "When the tool can't do something on your site or misreads the screen, send the page path, the HTML around the element and a screenshot to the Usercase team (kept 30 days)",
+      "default": true
+    }
+  },
+  "repository": "https://github.com/usercase-io/claude-plugin"
+}

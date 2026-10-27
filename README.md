@@ -1,0 +1,75 @@
+# Usercase for Claude Code
+
+Research your website with virtual users, before you have real ones.
+
+Ask Claude to research your site. Claude reads your repository to understand what the site is and who it is for, then casts a handful of virtual users. Each one visits the site in a real browser on your machine, looks around with their own goal, and answers the Usercase survey cards they happen to meet. Their visits and answers show up in your [Usercase](https://usercase.io) dashboard.
+
+- **The AI runs on your own Claude subscription.** Every visit uses your Claude usage.
+- **Runs on your machine.** Your browser, your network, your staging or demo accounts. Passwords never pass through Usercase.
+- **Visitors only see the screen.** Claude may read your code to plan the research, but the visitor agent can only use three browser tools. It cannot read files.
+
+This plugin works in **Claude Code** only. It starts a browser on your computer, which claude.ai on the web and Cowork can't do.
+
+## Requirements
+
+- Claude Code
+- Node.js 18 or later
+- Google Chrome (or run `npx playwright install chromium` once)
+- A Usercase project with the Usercase script on your site, so the survey cards appear (`/usercase:install` adds it)
+
+## Install
+
+In Claude Code:
+
+```
+/plugin install usercase --marketplace usercase-io/claude-plugin
+```
+
+Claude Code asks for your **Usercase API key**. Create one in the dashboard under **Settings → Integrations → API keys**. It starts with `eb_sk_`, and Claude Code keeps it in your system's secure credential store. To change it later: `/plugin` → **Installed** → **usercase** → **Configure**.
+
+## Commands
+
+| Command | What it does |
+|---|---|
+| `/usercase:research <url> [count] [focus]` | Casts virtual users and sends them to the site, 5 at a time. `count` is the total (default 5), or `unlimited` to keep going until you press Esc. `focus` limits them to people who come for one part of the site. |
+| `/usercase:install [url]` | Adds the Usercase script to your site's root layout, shows you the diff and checks that it loads. It doesn't commit or deploy. |
+| `/usercase:path <research id> [task id]` | Records the route a research task is meant to take, walks it twice in a browser, and saves it after you approve it. The dashboard's task screen shows this command. |
+| `/usercase:question` | Suggests a survey question for a precise moment on your site, and saves it as a draft in your Inbox after you approve it. |
+| `/usercase:steps <window id>` | Writes the steps for a multi-step question you are making in the dashboard. The dashboard shows this command. |
+
+You can also just ask Claude, for example "research my staging site with 10 virtual users".
+
+## What it runs
+
+- The MCP server [`@usercase/mcp`](https://www.npmjs.com/package/@usercase/mcp), started with `npx` at the exact version this plugin pins. It drives a Playwright browser on your machine.
+- A sub-agent, `usercase:usercase-visitor`, that plays one virtual user. It can only use the `open_visit`, `act` and `answer_card` tools.
+- For sites behind a sign-in, Chrome (or Edge) with a fresh, empty profile where **you** sign in with a demo account. Your usual browser profile is never touched. Only the session is saved, never the password.
+
+## What it sends, and where
+
+- **To your site:** the visitors' page loads. By default only `GET`, `HEAD` and `OPTIONS` requests are sent. Before the first round Claude asks whether writes (posting, saving, signing up) should reach the site, which is useful for a test or staging site. Payments, deleting, wallet connections, sign-out and password changes are always blocked. Every request carries the `X-Usercase-Agent` header and a `UsercaseQA/1.0` user-agent suffix, so you can tell visitors apart from real traffic.
+- **Analytics tools** such as Google Analytics and Hotjar are blocked during visits.
+- **To Usercase (`app.usercase.io`), with your API key:** each finished visit, meaning the virtual user's profile and goal, the pages and actions, the survey cards they met and their answers, and screenshots of the visit. It shows up in your dashboard under **Visits**. If an upload fails, it waits in `.usercase/outbox.jsonl` and is sent with the next one. Paths you record and questions you approve are saved to your project too.
+- **Diagnostics to Usercase:** when the tool can't do something on your site or misreads the screen, it sends the kind of failure, the page path, the HTML around the element and a screenshot of that moment. Only the Usercase team sees them, and they are kept for 30 days. Turn this off with the **Send diagnostics** option in the plugin settings.
+
+The plugin sends nothing else, and nothing goes to Usercase without an API key.
+
+## Files it creates
+
+`.usercase/` in your repository:
+
+- `people.json`: the virtual users. Edit them freely, and commit the file if you want to reuse them.
+- `runs/`: visit records.
+- `sessions/`: one sign-in session per demo account.
+- `paths/`: screenshots of the expected paths Claude recorded.
+- `settings.json`: your answer about writes.
+
+`runs/` and `sessions/` are git-ignored by a `.gitignore` inside the folder.
+
+## More
+
+The full guide, including running on a production site behind a firewall, is in the [`@usercase/mcp` README](https://www.npmjs.com/package/@usercase/mcp). Privacy: [usercase.io/privacy](https://usercase.io/privacy). Help: [usercase.io](https://usercase.io).
+
+## License
+
+The files in this plugin are under the MIT license (see `LICENSE`). The `@usercase/mcp` package it runs has its own terms: [usercase.io/terms](https://usercase.io/terms).
