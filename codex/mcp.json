@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "usercase": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@usercase/mcp@0.2.6"
+      ],
+      "env": {
+        "USERCASE_CLIENT": "codex"
+      }
+    }
+  }
+}

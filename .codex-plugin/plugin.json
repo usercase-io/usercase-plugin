@@ -1,0 +1,39 @@
+{
+  "name": "usercase",
+  "version": "0.2.6",
+  "description": "Virtual users that browse your website in a real browser and tell you what they thought",
+  "author": {
+    "name": "Usercase",
+    "url": "https://usercase.io"
+  },
+  "homepage": "https://usercase.io",
+  "license": "MIT",
+  "keywords": [
+    "user-research",
+    "ux",
+    "qa",
+    "browser"
+  ],
+  "skills": "./codex/skills/",
+  "mcpServers": "./codex/mcp.json",
+  "interface": {
+    "displayName": "Usercase",
+    "shortDescription": "Virtual users for your website",
+    "longDescription": "Virtual users that browse your website in a real browser and tell you what they thought",
+    "developerName": "Usercase",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Write"
+    ],
+    "websiteURL": "https://usercase.io",
+    "privacyPolicyURL": "https://usercase.io/privacy",
+    "termsOfServiceURL": "https://usercase.io/terms",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/icon.png",
+    "brandColor": "#1B4FC4",
+    "defaultPrompt": [
+      "Research this site with 5 virtual users",
+      "Add the Usercase script to this site"
+    ]
+  }
+}

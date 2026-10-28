@@ -1,7 +1,7 @@
 {
   "name": "usercase",
   "displayName": "Usercase",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Virtual users that browse your website in a real browser and tell you what they thought",
   "author": {
     "name": "Usercase",
@@ -22,8 +22,8 @@
     "api_key": {
       "type": "string",
       "title": "Usercase API key",
-      "description": "Dashboard → Settings → Integrations → API keys. Starts with eb_sk_",
-      "required": true,
+      "description": "Optional. Leave empty to connect in the browser on first use. Or paste a key from Dashboard → Settings → Integrations → API keys (starts with eb_sk_)",
+      "required": false,
       "sensitive": true
     },
     "diagnostics": {
@@ -33,5 +33,5 @@
       "default": true
     }
   },
-  "repository": "https://github.com/usercase-io/claude-plugin"
+  "repository": "https://github.com/usercase-io/usercase-plugin"
 }
