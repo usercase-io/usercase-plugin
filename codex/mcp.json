@@ -5,11 +5,15 @@
       "command": "npx",
       "args": [
         "-y",
-        "@usercase/mcp@0.2.7"
+        "@usercase/mcp@0.2.9"
       ],
       "env": {
         "USERCASE_CLIENT": "codex"
-      }
+      },
+      "env_vars": [
+        "USERCASE_API_KEY",
+        "USERCASE_DIAGNOSTICS"
+      ]
     }
   }
 }

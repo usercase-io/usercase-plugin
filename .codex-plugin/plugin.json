@@ -1,6 +1,6 @@
 {
   "name": "usercase",
-  "version": "0.2.7",
+  "version": "0.2.9",
   "description": "Virtual users that browse your website in a real browser and tell you what they thought",
   "author": {
     "name": "Usercase",
@@ -16,6 +16,7 @@
   ],
   "skills": "./codex/skills/",
   "mcpServers": "./codex/mcp.json",
+  "requires_local_executor": true,
   "interface": {
     "displayName": "Usercase",
     "shortDescription": "Virtual users for your website",
@@ -26,6 +27,7 @@
       "Write"
     ],
     "websiteURL": "https://usercase.io",
+    "supportURL": "https://usercase.io/support",
     "privacyPolicyURL": "https://usercase.io/privacy",
     "termsOfServiceURL": "https://usercase.io/terms",
     "composerIcon": "./assets/icon.png",
