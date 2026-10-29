@@ -5,7 +5,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "@usercase/mcp@0.2.6"
+        "@usercase/mcp@0.2.7"
       ],
       "env": {
         "USERCASE_CLIENT": "codex"

@@ -2,7 +2,7 @@
   "mcpServers": {
     "usercase": {
       "command": "npx",
-      "args": ["-y", "@usercase/mcp@0.2.6"],
+      "args": ["-y", "@usercase/mcp@0.2.7"],
       "env": {
         "USERCASE_API_KEY": "${user_config.api_key}",
         "USERCASE_DIAGNOSTICS": "${user_config.diagnostics}",
