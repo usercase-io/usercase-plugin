@@ -1,6 +1,6 @@
 {
   "name": "usercase",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "Virtual users that browse your website in a real browser and tell you what they thought",
   "author": {
     "name": "Usercase",

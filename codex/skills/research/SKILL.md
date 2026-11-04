@@ -7,6 +7,7 @@ Call the `instructions` tool of the `usercase` MCP server with `command` set to 
 
 - `url`: the site address, if one is given
 - `count`: a number of people, or `unlimited`, if one is given
-- `focus`: any remaining words — the part of the site the people should come for
+- `research`: a research id from the dashboard, if one is given (e.g. "research 3f2a…", "take part in research …") — the people then do that research's tasks
+- `focus`: any remaining words (when there is no research) — the part of the site the people should come for
 
 Leave out what isn't given. Then follow the instructions it returns, as the user's request.
