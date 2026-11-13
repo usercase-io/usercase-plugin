@@ -44,11 +44,12 @@ In Codex the same commands are skills: type `$usercase:research` instead of `/us
 
 | Command | What it does |
 |---|---|
-| `/usercase:research <url> [count] [focus]` | Casts virtual users and sends them to the site, 5 at a time. `count` is the total (default 5), or `unlimited` to keep going until you press Esc. `focus` limits them to people who come for one part of the site. |
+| `/usercase:research <url> [count] [focus \| research <id>]` | Casts virtual users and sends them to the site, 5 at a time. `count` is the total (default 5), or `unlimited` to keep going until you press Esc. `focus` limits them to people who come for one part of the site. `research <id>` has them take part in that research instead — its tasks and questions — the way invited participants do. |
 | `/usercase:install [url]` | Adds the Usercase script to your site's root layout, shows you the diff and checks that it loads. It doesn't commit or deploy. |
 | `/usercase:path <research id> [task id]` | Records the route a research task is meant to take, walks it twice in a browser, and saves it after you approve it. The dashboard's task screen shows this command. |
 | `/usercase:question` | Suggests a survey question for a precise moment on your site, and saves it as a draft in your Inbox after you approve it. |
 | `/usercase:new-research` | Suggests what to research from your project's findings and visits, writes the tasks and questions from your code, plans each task's route, and on your approval walks the routes in a browser and saves the research with them as a draft in your Inbox. |
+| `/usercase:fix <research id> <finding> [real]` · `/usercase:fix issue <issue id>` | Fixes a finding from a research report, or an issue from Issues, in your code: reads the evidence and earlier fixes, proposes a change, makes it after you approve, and records the fix. Add `real` for the report of real people. The dashboard shows this command on each finding and issue. |
 | `/usercase:connect` | Connects this repository to another Usercase project. Other repositories keep theirs. |
 | `/usercase:steps <window id>` | Writes the steps for a multi-step question you are making in the dashboard. The dashboard shows this command. |
 
@@ -64,6 +65,7 @@ You can also just ask your agent, for example "research my staging site with 10 
 
 - **To your site:** the visitors' page loads. By default only `GET`, `HEAD` and `OPTIONS` requests are sent. Before the first round the agent asks whether writes (posting, saving, signing up) should reach the site, which is useful for a test or staging site. Payments, deleting, wallet connections, sign-out and password changes are always blocked. Every request carries the `X-Usercase-Agent` header and a `UsercaseQA/1.0` user-agent suffix, so you can tell visitors apart from real traffic.
 - **Analytics tools** such as Google Analytics and Hotjar are blocked during visits.
+- **To your AI (the visitor sub-agent):** each screen as text, plus a small screenshot of what is in view, so the virtual user sees images, colours and layout the way a person would.
 - **To Usercase (`app.usercase.io`), once connected:** each finished visit, meaning the virtual user's profile and goal, the pages and actions, the survey cards they met and their answers, and screenshots of the visit. It shows up in your dashboard under **Visits**. If an upload fails, it waits in `.usercase/outbox.jsonl` and is sent with the next one. Paths you record, and questions and research drafts you approve, are saved to your project too.
 - **Diagnostics to Usercase:** when the tool can't do something on your site or misreads the screen, it sends the kind of failure, the page path, the HTML around the element and a screenshot of that moment. Only the Usercase team sees them, and they are kept for 30 days. Turn this off with the **Send diagnostics** option in the plugin settings (Claude Code), or set `USERCASE_DIAGNOSTICS=off`.
 

@@ -1,0 +1,6 @@
+---
+name: fix
+description: Fix a finding from a Usercase research report, or an issue from Issues, in this repository's code. Run with the command the dashboard shows.
+---
+
+Call the `instructions` tool of the `usercase` MCP server with `command` set to `fix` and these arguments from the user's message. If the first word is `issue`, set `issue` to the second word (or leave it out if there is none). Otherwise set `research` to the first word, `finding` to the second word if there is one, and `audience` to `real` if a later word is `real`. Then follow the instructions it returns, as the user's request.
